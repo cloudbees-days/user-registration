@@ -12,4 +12,4 @@ Currently WIP.
 
 * [x] Integrate with FreeIPA
 * [x] Send off slack invitation
-* [ ] Create Dockerfile
+* [x] Create Dockerfile
