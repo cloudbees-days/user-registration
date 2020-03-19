@@ -30,7 +30,7 @@ def registration():
             o_userpassword=form.password.data,
             o_preferredlanguage="EN",
         )
-        if os.environ.get("SLACK_ENABLED"):
+        if os.environ.get("SLACK_ENABLED") == "true":
             try:
                 data = {
                     "email": form.email.data,
