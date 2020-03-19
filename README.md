@@ -11,5 +11,5 @@ Currently WIP.
 ## Todo
 
 * [x] Integrate with FreeIPA
-* [ ] Send off slack invitation
+* [x] Send off slack invitation
 * [ ] Create Dockerfile
