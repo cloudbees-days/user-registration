@@ -9,6 +9,7 @@ verify_ssl = true
 flask = "*"
 flask-wtf = "*"
 python-freeipa = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.7"
