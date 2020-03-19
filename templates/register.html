@@ -21,11 +21,21 @@
         </div>
         <form class="mt-8" action="/" method="POST">
             {{ form.hidden_tag() }}
+            {% if form.username.errors %}
+                <div class="bg-red-100 p-2 border-red-300 border rounded-lg mb-2">
+                    <p>{{ form.username.errors[0] }}</p>
+                </div>
+            {% endif %}
             <div class="rounded-md shadow-sm">
                 <div>
                     <input aria-label="Email address" id="email" name="email" type="email" required
                            class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5"
                            placeholder="Email address"/>
+                </div>
+                <div>
+                    <input aria-label="Username" id="username" name="username" type="text" required
+                           class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5"
+                           placeholder="Username"/>
                 </div>
                 <div class="flex">
                     <input aria-label="First name" id="first_name" name="first_name" type="text" required

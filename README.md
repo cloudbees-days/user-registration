@@ -10,6 +10,6 @@ Currently WIP.
 
 ## Todo
 
-* [ ] Integrate with FreeIPA
+* [x] Integrate with FreeIPA
 * [ ] Send off slack invitation
 * [ ] Create Dockerfile
