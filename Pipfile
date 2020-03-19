@@ -11,6 +11,7 @@ flask-wtf = "*"
 python-freeipa = "*"
 gunicorn = "*"
 requests = "*"
+lookup = "*"
 
 [requires]
 python_version = "3.7"
