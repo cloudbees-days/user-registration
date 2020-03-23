@@ -5,6 +5,8 @@ from python_freeipa import ClientMeta
 from wtforms import StringField, PasswordField
 from wtforms.validators import DataRequired, Email, ValidationError
 
+INVITE_CODE_ENV = os.environ.get("INVITE_CODE", "")
+
 client = ClientMeta(os.environ.get("LDAP_SERVER"), verify_ssl=False)
 client.login(os.environ.get("LDAP_ADMIN"), os.environ.get("LDAP_PASSWORD"))
 
@@ -15,7 +17,7 @@ class SignupForm(FlaskForm):
     first_name = StringField("First name", validators=[DataRequired()])
     username = StringField("Username", validators=[DataRequired()])
     last_name = StringField("Last name", validators=[DataRequired()])
-    if os.environ.get("INVITE_CODE"):
+    if INVITE_CODE_ENV:
         invite_code = StringField("Invite code", validators=[DataRequired()])
 
     def validate_username(self, username):
@@ -26,5 +28,5 @@ class SignupForm(FlaskForm):
             )
 
     def validate_invite_code(self, invite_code):
-        if invite_code.data != os.environ.get("INVITE_CODE"):
+        if invite_code.data != INVITE_CODE_ENV:
             raise ValidationError("Invite code is incorrect!")

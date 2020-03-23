@@ -26,10 +26,12 @@
                     <p>{{ form.username.errors[0] }}</p>
                 </div>
             {% endif %}
-            {% if form.invite_code.errors %}
-                <div class="bg-red-100 p-2 border-red-300 border rounded-lg mb-2">
-                    <p>{{ form.invite_code.errors[0] }}</p>
-                </div>
+            {% if form.invite_code %}
+                {% if form.invite_code.errors %}
+                    <div class="bg-red-100 p-2 border-red-300 border rounded-lg mb-2">
+                        <p>{{ form.invite_code.errors[0] }}</p>
+                    </div>
+                {% endif %}
             {% endif %}
             {% if form.invite_code %}
                 <div class="bg-gray-200 p-4 rounded-t-lg">
