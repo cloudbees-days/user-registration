@@ -15,6 +15,8 @@ class SignupForm(FlaskForm):
     first_name = StringField("First name", validators=[DataRequired()])
     username = StringField("Username", validators=[DataRequired()])
     last_name = StringField("Last name", validators=[DataRequired()])
+    if os.environ.get("INVITE_CODE"):
+        invite_code = StringField("Invite code", validators=[DataRequired()])
 
     def validate_username(self, username):
         user = client.user_find(username.data)
@@ -22,3 +24,7 @@ class SignupForm(FlaskForm):
             raise ValidationError(
                 f"Username {username.data} already exists, please use another."
             )
+
+    def validate_invite_code(self, invite_code):
+        if invite_code.data != os.environ.get("INVITE_CODE"):
+            raise ValidationError("Invite code is incorrect!")

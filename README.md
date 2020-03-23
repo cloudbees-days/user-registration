@@ -17,6 +17,8 @@
 | SLACK_ENABLED | true | If you want to invite users to your Slack workspace, set this to true |
 | SLACK_API_TOKEN | api_token | Use your Slack workspace's API token. |
 | SLACK_WORKSPACE | example-workspace | The Slack workspace to invite users to. |
+| INVITE_CODE | myinvitecode | Set an invite code to restrict who has access to signup. |
+
 
 ### How to run
 
