@@ -10,6 +10,11 @@ from forms import SignupForm
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY") or "ookeemo7ohGhahx9da9l"
 
+INVITE_CODE_ENV = os.environ.get("INVITE_CODE", "")
+ELEVATED_INVITE_CODE_ENV = os.environ.get("ELEVATED_INVITE_CODE", "")
+USER_GROUP_ENV = os.environ.get("USER_GROUP", "")
+ELEVATED_USER_GROUP_ENV = os.environ.get("ELEVATED_USER_GROUP", "")
+
 client = ClientMeta(os.environ.get("LDAP_SERVER"), verify_ssl=False)
 client.login(os.environ.get("LDAP_ADMIN"), os.environ.get("LDAP_PASSWORD"))
 
@@ -20,7 +25,6 @@ logger = logging.getLogger('registration')
 def registration():
     form = SignupForm()
     if form.validate_on_submit():
-        print(form.email)
         full_name = f"{form.first_name.data} {form.last_name.data}"
         client.user_add(
             a_uid=form.username.data,
@@ -28,8 +32,13 @@ def registration():
             o_sn=form.last_name.data,
             o_cn=full_name,
             o_userpassword=form.password.data,
-            o_preferredlanguage="EN",
+            o_preferredlanguage="EN"
         )
+        if form.invite_code.data == INVITE_CODE_ENV:
+            client.group_add_member(USER_GROUP_ENV, o_user=form.username.data)
+        elif form.invite_code.data == ELEVATED_INVITE_CODE_ENV:
+            client.group_add_member(ELEVATED_USER_GROUP_ENV, o_user=form.username.data)
+
         if os.environ.get("SLACK_ENABLED") == "true":
             try:
                 data = {

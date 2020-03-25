@@ -6,6 +6,7 @@ from wtforms import StringField, PasswordField
 from wtforms.validators import DataRequired, Email, ValidationError
 
 INVITE_CODE_ENV = os.environ.get("INVITE_CODE", "")
+ELEVATED_INVITE_CODE_ENV = os.environ.get("ELEVATED_INVITE_CODE", "")
 
 client = ClientMeta(os.environ.get("LDAP_SERVER"), verify_ssl=False)
 client.login(os.environ.get("LDAP_ADMIN"), os.environ.get("LDAP_PASSWORD"))
@@ -28,5 +29,9 @@ class SignupForm(FlaskForm):
             )
 
     def validate_invite_code(self, invite_code):
-        if invite_code.data != INVITE_CODE_ENV:
+        if invite_code.data == INVITE_CODE_ENV:
+            return
+        if invite_code.data == ELEVATED_INVITE_CODE_ENV:
+            return
+        else:
             raise ValidationError("Invite code is incorrect!")
