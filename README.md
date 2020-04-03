@@ -27,7 +27,7 @@
 
 #### Locally
 
-```python
+```bash
 # If you don't have pipenv installed, install it
 pip install pipenv
 
