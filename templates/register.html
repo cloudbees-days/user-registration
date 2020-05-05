@@ -15,12 +15,14 @@
         <div>
             <img class="mx-auto h-48 w-auto" src="/static/img/cb.png"
                  alt="Workflow"/>
-            <h2 class="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
+            <h2 class="mt-6 mb-2 text-center text-3xl leading-9 font-extrabold text-gray-900">
                 Sign up for an account
             </h2>
-            <h4><a href="https://cloudbees-days.github.io/core-rollout-flow-workshop/#2" target="_blank">Workshop Slides</a></h4>
+            <div class="flex">
+            <h4 class="text-center bg-gray-100 shadow hover:bg-gray-300 rounded-lg px-5 py-2 inline-block mx-auto"><a class="hover:underline" href="https://cloudbees-days.github.io/core-rollout-flow-workshop/#2" target="_blank">Workshop Slides</a></h4>
+            </div>
         </div>
-        <form class="mt-8" action="/" method="POST">
+        <form class="mt-6" action="/" method="POST">
             {{ form.hidden_tag() }}
             {% if form.username.errors %}
                 <div class="bg-red-100 p-2 border-red-300 border rounded-lg mb-2">
